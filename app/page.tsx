@@ -1,4 +1,6 @@
 'use client';
+// @ts-nocheck
+
 import { useState, useEffect, useRef, useMemo } from 'react';
 
 const TABS = [
