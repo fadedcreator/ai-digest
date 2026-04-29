@@ -24,90 +24,9 @@ const LANGUAGES = [
 ];
 
 const UI = {
-  en: {
-    title: 'AI News Digest',
-    subtitle: 'Intelligence Feed',
-    generate: 'Generate Digest',
-    refresh: '↻ Refresh',
-    loading: 'Loading…',
-    fetching: 'Fetching from all sources…',
-    translating: 'Translating into',
-    empty: 'Click Generate Digest to pull the latest AI news',
-    sources: 'OpenAI · Anthropic · Karpathy · TLDR AI · The Batch · and more',
-    topStories: 'Top stories · last 24h',
-    allArticles: 'All articles',
-    noResults: 'No articles match these filters.',
-    search: 'Search articles…',
-    allSources: 'All sources',
-    updated: 'Updated',
-    newArticles: 'new articles — click to load',
-    newArticle: 'new article — click to load',
-    read: 'Read ↗',
-    watch: 'Watch ↗',
-    readFull: 'Read article ↗',
-    watchFull: 'Watch on YouTube ↗',
-    apiKey: 'Anthropic API Key (optional — enables translation)',
-    apiPlaceholder: 'sk-ant-...',
-    grid: '⊞ Grid',
-    list: '☰ List',
-    dir: 'ltr',
-  },
-  zh: {
-    title: 'AI 新闻摘要',
-    subtitle: '智能资讯',
-    generate: '生成摘要',
-    refresh: '↻ 刷新',
-    loading: '加载中…',
-    fetching: '正在获取所有来源…',
-    translating: '正在翻译为',
-    empty: '点击"生成摘要"获取最新AI新闻',
-    sources: 'OpenAI · Anthropic · Karpathy · TLDR AI · The Batch · 更多',
-    topStories: '热门新闻 · 最近24小时',
-    allArticles: '全部文章',
-    noResults: '没有符合条件的文章。',
-    search: '搜索文章…',
-    allSources: '所有来源',
-    updated: '更新于',
-    newArticles: '条新文章 — 点击加载',
-    newArticle: '条新文章 — 点击加载',
-    read: '阅读 ↗',
-    watch: '观看 ↗',
-    readFull: '阅读文章 ↗',
-    watchFull: '在YouTube观看 ↗',
-    apiKey: 'Anthropic API 密钥（可选 — 启用翻译）',
-    apiPlaceholder: 'sk-ant-...',
-    grid: '⊞ 网格',
-    list: '☰ 列表',
-    dir: 'ltr',
-  },
-  ar: {
-    title: 'ملخص أخبار الذكاء الاصطناعي',
-    subtitle: 'تغذية المعلومات',
-    generate: 'إنشاء الملخص',
-    refresh: '↻ تحديث',
-    loading: 'جارٍ التحميل…',
-    fetching: 'جارٍ جلب المصادر…',
-    translating: 'جارٍ الترجمة إلى',
-    empty: 'انقر على "إنشاء الملخص" للحصول على آخر أخبار الذكاء الاصطناعي',
-    sources: 'OpenAI · Anthropic · Karpathy · TLDR AI · The Batch · والمزيد',
-    topStories: 'أبرز الأخبار · آخر 24 ساعة',
-    allArticles: 'جميع المقالات',
-    noResults: 'لا توجد مقالات تطابق هذه الفلاتر.',
-    search: 'البحث في المقالات…',
-    allSources: 'جميع المصادر',
-    updated: 'تحديث',
-    newArticles: 'مقالات جديدة — انقر للتحميل',
-    newArticle: 'مقالة جديدة — انقر للتحميل',
-    read: 'اقرأ ↗',
-    watch: 'شاهد ↗',
-    readFull: 'اقرأ المقالة ↗',
-    watchFull: 'شاهد على يوتيوب ↗',
-    apiKey: 'مفتاح Anthropic API (اختياري — يتيح الترجمة)',
-    apiPlaceholder: 'sk-ant-...',
-    grid: '⊞ شبكة',
-    list: '☰ قائمة',
-    dir: 'rtl',
-  },
+  en: { title: 'AI News Digest', subtitle: 'Intelligence Feed', refresh: '↻ Refresh', loading: 'Loading…', fetching: 'Fetching from all sources…', translating: 'Translating into', empty: 'Loading latest AI news…', sources: 'OpenAI · Anthropic · Karpathy · TLDR AI · The Batch · and more', topStories: 'Top stories · last 24h', allArticles: 'All articles', noResults: 'No articles match these filters.', search: 'Search articles…', allSources: 'All sources', updated: 'Updated', newArticles: 'new articles — click to load', newArticle: 'new article — click to load', read: 'Read ↗', watch: 'Watch ↗', readFull: 'Read article ↗', watchFull: 'Watch on YouTube ↗', grid: '⊞ Grid', list: '☰ List', dir: 'ltr' },
+  zh: { title: 'AI 新闻摘要', subtitle: '智能资讯', refresh: '↻ 刷新', loading: '加载中…', fetching: '正在获取所有来源…', translating: '正在翻译为', empty: '正在加载最新AI新闻…', sources: 'OpenAI · Anthropic · Karpathy · 更多', topStories: '热门新闻 · 最近24小时', allArticles: '全部文章', noResults: '没有符合条件的文章。', search: '搜索文章…', allSources: '所有来源', updated: '更新于', newArticles: '条新文章 — 点击加载', newArticle: '条新文章 — 点击加载', read: '阅读 ↗', watch: '观看 ↗', readFull: '阅读文章 ↗', watchFull: '在YouTube观看 ↗', grid: '⊞ 网格', list: '☰ 列表', dir: 'ltr' },
+  ar: { title: 'ملخص أخبار الذكاء الاصطناعي', subtitle: 'تغذية المعلومات', refresh: '↻ تحديث', loading: 'جارٍ التحميل…', fetching: 'جارٍ جلب المصادر…', translating: 'جارٍ الترجمة إلى', empty: 'جارٍ تحميل آخر أخبار الذكاء الاصطناعي…', sources: 'OpenAI · Anthropic · والمزيد', topStories: 'أبرز الأخبار · آخر 24 ساعة', allArticles: 'جميع المقالات', noResults: 'لا توجد مقالات تطابق هذه الفلاتر.', search: 'البحث في المقالات…', allSources: 'جميع المصادر', updated: 'تحديث', newArticles: 'مقالات جديدة — انقر للتحميل', newArticle: 'مقالة جديدة — انقر للتحميل', read: 'اقرأ ↗', watch: 'شاهد ↗', readFull: 'اقرأ المقالة ↗', watchFull: 'شاهد على يوتيوب ↗', grid: '⊞ شبكة', list: '☰ قائمة', dir: 'rtl' },
 };
 
 const REFRESH_INTERVAL = 30 * 60 * 1000;
@@ -230,12 +149,9 @@ export default function Home() {
   const [dark, setDark] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [lang, setLang] = useState('en');
-  const [apiKey, setApiKey] = useState('');
-  const [showApiKey, setShowApiKey] = useState(false);
   const [items, setItems] = useState([]);
   const [pendingItems, setPendingItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [translating, setTranslating] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState('all');
@@ -246,6 +162,7 @@ export default function Home() {
   const [lastChecked, setLastChecked] = useState('');
   const [newCount, setNewCount] = useState(0);
   const intervalRef = useRef(null);
+  const hasFetched = useRef(false);
 
   const t = UI[lang];
 
@@ -253,55 +170,17 @@ export default function Home() {
     const stored = localStorage.getItem('theme');
     if (stored) setDark(stored === 'dark');
     else setDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
-    const storedKey = localStorage.getItem('apiKey');
-    if (storedKey) setApiKey(storedKey);
     const storedLang = localStorage.getItem('lang');
     if (storedLang) setLang(storedLang);
     setMounted(true);
   }, []);
 
-  async function translateItems(rawItems, targetLang) {
-    if (targetLang === 'en' || !apiKey) return rawItems;
-    const langName = LANGUAGES.find(l => l.id === targetLang)?.label || targetLang;
-    setTranslating(true);
-    try {
-      const sample = rawItems.slice(0, 20).map(i => ({ title: i.title, description: i.description || '' }));
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-        },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 4000,
-          system: `You are a professional AI news translator. Translate the given JSON array of articles into ${langName}. 
-Prioritize accuracy and natural-sounding ${langName}. Keep source names and proper nouns in their original form.
-Return ONLY a raw JSON array with the same structure — no markdown, no backticks, no explanation.`,
-          messages: [{
-            role: 'user',
-            content: `Translate these AI news articles into ${langName}. Return only the JSON array:\n${JSON.stringify(sample)}`
-          }]
-        })
-      });
-      if (!res.ok) throw new Error('Translation failed');
-      const data = await res.json();
-      const text = data.content.find(b => b.type === 'text')?.text || '';
-      const clean = text.replace(/```json|```/g, '').trim();
-      const translated = JSON.parse(clean);
-      return rawItems.map((item, i) => ({
-        ...item,
-        title: translated[i]?.title || item.title,
-        description: translated[i]?.description || item.description,
-      }));
-    } catch (e) {
-      console.error('Translation error:', e);
-      return rawItems;
-    } finally {
-      setTranslating(false);
+  useEffect(() => {
+    if (mounted && !hasFetched.current) {
+      hasFetched.current = true;
+      fetchNews(false);
     }
-  }
+  }, [mounted]);
 
   async function fetchNews(silent = false) {
     if (!silent) setLoading(true);
@@ -311,21 +190,15 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
       const data = await res.json();
       const now = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
       setLastChecked(now);
-
-      let finalItems = data.items;
-      if (lang !== 'en' && apiKey) {
-        finalItems = await translateItems(data.items, lang);
-      }
-
       if (silent && items.length > 0) {
         const existingLinks = new Set(items.map(i => i.link));
-        const fresh = finalItems.filter(i => !existingLinks.has(i.link));
+        const fresh = data.items.filter(i => !existingLinks.has(i.link));
         if (fresh.length > 0) {
-          setPendingItems(finalItems);
+          setPendingItems(data.items);
           setNewCount(fresh.length);
         }
       } else {
-        setItems(finalItems);
+        setItems(data.items);
         setPendingItems([]);
         setNewCount(0);
         setLoaded(true);
@@ -343,7 +216,7 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
     if (!loaded) return;
     intervalRef.current = setInterval(() => fetchNews(true), REFRESH_INTERVAL);
     return () => clearInterval(intervalRef.current);
-  }, [loaded, items, lang]);
+  }, [loaded, items]);
 
   function applyPending() {
     setItems(pendingItems);
@@ -363,15 +236,6 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
   function changeLang(newLang) {
     setLang(newLang);
     localStorage.setItem('lang', newLang);
-    if (loaded) {
-      setLoaded(false);
-      setItems([]);
-    }
-  }
-
-  function saveApiKey(key) {
-    setApiKey(key);
-    localStorage.setItem('apiKey', key);
   }
 
   const topStories = useMemo(() => {
@@ -407,11 +271,6 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
 
   if (!mounted) return null;
 
-  const isLoading = loading || translating;
-  const loadingText = translating
-    ? `${t.translating} ${LANGUAGES.find(l => l.id === lang)?.native}…`
-    : t.loading;
-
   return (
     <div style={{ minHeight: '100vh', background: bg, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", direction: t.dir }}>
 
@@ -422,22 +281,6 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
         </div>
       )}
 
-      {/* API Key bar */}
-      <div style={{ background: dark ? '#0e0e0e' : '#faf9f7', borderBottom: `1px solid ${borderColor}`, padding: '8px 2.5rem', display: 'flex', alignItems: 'center', gap: 10 }}>
-        <span style={{ fontSize: 11, color: textMuted, whiteSpace: 'nowrap' }}>{t.apiKey}:</span>
-        <input
-          type={showApiKey ? 'text' : 'password'}
-          placeholder={t.apiPlaceholder}
-          value={apiKey}
-          onChange={e => saveApiKey(e.target.value)}
-          style={{ flex: 1, maxWidth: 380, padding: '5px 10px', fontSize: 12, background: inputBg, border: `1px solid ${borderColor}`, borderRadius: 6, color: textPrimary, outline: 'none', fontFamily: 'monospace' }}
-        />
-        <button onClick={() => setShowApiKey(s => !s)} style={{ background: 'none', border: 'none', fontSize: 11, color: textMuted, cursor: 'pointer', padding: 0 }}>
-          {showApiKey ? 'Hide' : 'Show'}
-        </button>
-      </div>
-
-      {/* Header */}
       <div style={{ background: headerBg, borderBottom: `1px solid ${borderColor}`, padding: '1.25rem 2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100 }}>
         <div>
           <p style={{ fontSize: 10, letterSpacing: '0.2em', color: textMuted, textTransform: 'uppercase', marginBottom: 3 }}>{t.subtitle}</p>
@@ -445,8 +288,6 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
         </div>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
           {lastChecked && <span style={{ fontSize: 11, color: textMuted }}>{t.updated} {lastChecked}</span>}
-
-          {/* Language selector */}
           <div style={{ display: 'flex', gap: 4 }}>
             {LANGUAGES.map(l => (
               <button key={l.id} onClick={() => changeLang(l.id)} style={{ padding: '6px 12px', fontSize: 12, fontWeight: lang === l.id ? 700 : 400, background: lang === l.id ? (dark ? '#fff' : '#111') : 'transparent', color: lang === l.id ? (dark ? '#111' : '#fff') : textMuted, border: `1px solid ${lang === l.id ? (dark ? '#fff' : '#111') : borderColor}`, borderRadius: 6, cursor: 'pointer' }}>
@@ -454,16 +295,14 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
               </button>
             ))}
           </div>
-
           <button onClick={toggleDark} style={{ background: 'none', border: `1px solid ${borderColor}`, borderRadius: 8, padding: '8px 12px', fontSize: 16, cursor: 'pointer', lineHeight: 1 }}>{dark ? '☀️' : '🌙'}</button>
           <button onClick={() => setCompact(c => !c)} style={{ background: 'none', border: `1px solid ${borderColor}`, borderRadius: 8, padding: '8px 12px', fontSize: 12, fontWeight: 500, cursor: 'pointer', color: textPrimary }}>{compact ? t.grid : t.list}</button>
-          <button onClick={() => fetchNews(false)} disabled={isLoading} style={{ background: dark ? '#fff' : '#111', color: dark ? '#111' : '#fff', border: 'none', padding: '10px 22px', fontSize: 12, fontWeight: 600, letterSpacing: '0.05em', borderRadius: 8, cursor: isLoading ? 'not-allowed' : 'pointer', opacity: isLoading ? 0.6 : 1 }}>
-            {isLoading ? loadingText : loaded ? t.refresh : t.generate}
+          <button onClick={() => fetchNews(false)} disabled={loading} style={{ background: dark ? '#fff' : '#111', color: dark ? '#111' : '#fff', border: 'none', padding: '10px 22px', fontSize: 12, fontWeight: 600, letterSpacing: '0.05em', borderRadius: 8, cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.6 : 1 }}>
+            {loading ? t.loading : t.refresh}
           </button>
         </div>
       </div>
 
-      {/* Tabs */}
       {loaded && (
         <div style={{ background: headerBg, borderBottom: `1px solid ${borderColor}`, padding: '0 2.5rem', display: 'flex', gap: 4, overflowX: 'auto' }}>
           {TABS.map(tab => {
@@ -481,25 +320,14 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
 
       {error && <div style={{ margin: '1.5rem 2.5rem', padding: '12px 16px', background: '#fff5f5', border: '1px solid #fecaca', borderRadius: 8, color: '#dc2626', fontSize: 13 }}>{error}</div>}
 
-      {!loaded && !isLoading && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '65vh', gap: 16 }}>
-          <div style={{ fontSize: 44 }}>📡</div>
-          <p style={{ fontSize: 15, color: textMuted, margin: 0, textAlign: 'center' }}>{t.empty}</p>
-          <p style={{ fontSize: 12, color: dark ? '#444' : '#ccc', margin: 0 }}>{t.sources}</p>
-        </div>
-      )}
-
-      {isLoading && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '65vh', gap: 12 }}>
-          <p style={{ fontSize: 14, color: textMuted }}>{loadingText}</p>
-          {translating && <p style={{ fontSize: 12, color: dark ? '#444' : '#ccc' }}>This may take a few seconds…</p>}
+      {loading && (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '65vh' }}>
+          <p style={{ fontSize: 14, color: textMuted }}>{t.fetching}</p>
         </div>
       )}
 
       {loaded && (
         <div style={{ padding: '1.5rem 2.5rem 0', maxWidth: 1280, margin: '0 auto' }}>
-
-          {/* Search + filters */}
           <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
             <div style={{ position: 'relative', flex: 1, minWidth: 200 }}>
               <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', fontSize: 14, color: textMuted, pointerEvents: 'none' }}>🔍</span>
@@ -515,7 +343,6 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
             </div>
           </div>
 
-          {/* Source pills */}
           {availableSources.length > 2 && (
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: '1.5rem' }}>
               {availableSources.map(src => {
@@ -531,7 +358,6 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
             </div>
           )}
 
-          {/* Top stories */}
           {activeTab === 'all' && search === '' && dateFilter === 'all' && activeSource === 'all' && topStories.length > 0 && (
             <div style={{ marginBottom: '2.5rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: '1rem' }}>
@@ -553,7 +379,6 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
             </div>
           )}
 
-          {/* Section label */}
           {filtered.length > 0 && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: '1.5rem' }}>
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: textMuted, whiteSpace: 'nowrap' }}>
@@ -564,7 +389,6 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
             </div>
           )}
 
-          {/* Feed */}
           {filtered.length > 0 && !compact && (
             <>
               <Card item={filtered[0]} featured dark={dark} compact={false} t={t} />
@@ -581,9 +405,7 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
           )}
 
           {filtered.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '4rem', color: textMuted, fontSize: 14 }}>
-              {search ? `"${search}" — ${t.noResults}` : t.noResults}
-            </div>
+            <div style={{ textAlign: 'center', padding: '4rem', color: textMuted, fontSize: 14 }}>{t.noResults}</div>
           )}
         </div>
       )}
