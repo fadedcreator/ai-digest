@@ -22,3 +22,9 @@ img {
   display: block;
   max-width: 100%;
 }
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
