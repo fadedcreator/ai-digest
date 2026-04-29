@@ -9,34 +9,36 @@ const parser = new Parser({
       ['enclosure', 'enclosure', { keepArray: false }],
     ],
   },
+  timeout: 8000,
 });
 
 const FEEDS = [
   { name: 'OpenAI', url: 'https://openai.com/news/rss.xml', category: 'companies', color: '#10a37f' },
   { name: 'Anthropic', url: 'https://www.anthropic.com/rss.xml', category: 'companies', color: '#c96442' },
   { name: 'Google DeepMind', url: 'https://deepmind.google/blog/rss/feed/', category: 'companies', color: '#4285f4' },
+  { name: 'Google AI', url: 'https://blog.google/technology/ai/rss/', category: 'companies', color: '#34a853' },
   { name: 'Meta AI', url: 'https://ai.meta.com/blog/feed/', category: 'companies', color: '#0866ff' },
-  { name: 'Mistral', url: 'https://mistral.ai/feed.xml', category: 'companies', color: '#ff7000' },
+  { name: 'Microsoft AI', url: 'https://blogs.microsoft.com/ai/feed/', category: 'companies', color: '#00a4ef' },
   { name: 'Hugging Face', url: 'https://huggingface.co/blog/feed.xml', category: 'companies', color: '#ff9d00' },
-  { name: 'Cohere', url: 'https://cohere.com/blog/rss', category: 'companies', color: '#39594d' },
 
-  { name: 'The Verge AI', url: 'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml', category: 'media', color: '#e5197d' },
   { name: 'MIT Tech Review', url: 'https://www.technologyreview.com/topic/artificial-intelligence/feed', category: 'media', color: '#bb0000' },
-  { name: 'VentureBeat AI', url: 'https://venturebeat.com/category/ai/feed/', category: 'media', color: '#555' },
-  { name: 'Wired AI', url: 'https://www.wired.com/feed/tag/ai/latest/rss', category: 'media', color: '#111' },
+  { name: 'Ars Technica', url: 'https://feeds.arstechnica.com/arstechnica/technology-lab', category: 'media', color: '#f60' },
+  { name: 'The Verge AI', url: 'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml', category: 'media', color: '#e5197d' },
   { name: 'TechCrunch AI', url: 'https://techcrunch.com/category/artificial-intelligence/feed/', category: 'media', color: '#0a8a00' },
+  { name: 'VentureBeat AI', url: 'https://venturebeat.com/category/ai/feed/', category: 'media', color: '#888' },
+  { name: 'Reuters Tech', url: 'https://feeds.reuters.com/reuters/technologyNews', category: 'media', color: '#ff8000' },
+
+  { name: 'Simon Willison', url: 'https://simonwillison.net/atom/everything/', category: 'insiders', color: '#6366f1' },
+  { name: 'One Useful Thing', url: 'https://www.oneusefulthing.org/feed', category: 'insiders', color: '#8b5cf6' },
+  { name: 'The Batch', url: 'https://www.deeplearning.ai/the-batch/feed/', category: 'insiders', color: '#e11d48' },
+  { name: 'ImportAI', url: 'https://importai.substack.com/feed', category: 'insiders', color: '#0ea5e9' },
+  { name: "Ben's Bites", url: 'https://bensbites.beehiiv.com/feed', category: 'insiders', color: '#f59e0b' },
+  { name: 'TLDR AI', url: 'https://tldr.tech/ai/rss', category: 'insiders', color: '#06b6d4' },
 
   { name: 'Andrej Karpathy', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCB1rRq8aevRkX6kVMlgBVXQ', category: 'youtube', color: '#ff0000' },
   { name: 'AI Explained', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCNJ1Ymd5yFuUPtn21xtRbbw', category: 'youtube', color: '#ff0000' },
   { name: 'Two Minute Papers', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg', category: 'youtube', color: '#ff0000' },
-  { name: 'Matt Wolfe', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCVbeFoTbNyvOeGCFKSdJFmA', category: 'youtube', color: '#ff0000' },
   { name: 'Yannic Kilcher', url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfew', category: 'youtube', color: '#ff0000' },
-
-  { name: 'TLDR AI', url: 'https://tldr.tech/ai/rss', category: 'newsletters', color: '#6366f1' },
-  { name: 'ImportAI', url: 'https://importai.substack.com/feed', category: 'newsletters', color: '#8b5cf6' },
-  { name: 'The Batch', url: 'https://www.deeplearning.ai/the-batch/feed/', category: 'newsletters', color: '#e11d48' },
-  { name: 'Last Week in AI', url: 'https://lastweekin.ai/feed', category: 'newsletters', color: '#0ea5e9' },
-  { name: 'AI Breakfast', url: 'https://aibreakfast.beehiiv.com/feed', category: 'newsletters', color: '#f59e0b' },
 ];
 
 const DAYS = 14;
