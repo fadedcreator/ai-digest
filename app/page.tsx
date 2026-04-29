@@ -477,8 +477,17 @@ export default function Home() {
             </div>
           )}
 
-          {filtered.length === 0 && !loading && (
-            <div style={{ textAlign: 'center', padding: '4rem', color: textMuted, fontSize: 13 }}>{t.noResults}</div>
+<style>{`
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+          to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        input::placeholder { color: ${dark ? '#444' : '#bbb'}; }
+        input:focus { border-color: ${dark ? '#444' : '#aaa'} !important; }
+        ::-webkit-scrollbar { display: none; }
+        * { scrollbar-width: none; }
+      `}</style>
+      
           )}
         </div>
       )}
