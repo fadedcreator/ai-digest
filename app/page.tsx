@@ -328,3 +328,274 @@ Return ONLY a raw JSON array with the same structure — no markdown, no backtic
         setItems(finalItems);
         setPendingItems([]);
         setNewCount(0);
+        setLoaded(true);
+        setActiveTab('all');
+        setActiveSource('all');
+      }
+    } catch {
+      if (!silent) setError('Failed to fetch. Try again.');
+    } finally {
+      if (!silent) setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (!loaded) return;
+    intervalRef.current = setInterval(() => fetchNews(true), REFRESH_INTERVAL);
+    return () => clearInterval(intervalRef.current);
+  }, [loaded, items, lang]);
+
+  function applyPending() {
+    setItems(pendingItems);
+    setPendingItems([]);
+    setNewCount(0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleDark() {
+    setDark(d => {
+      const next = !d;
+      localStorage.setItem('theme', next ? 'dark' : 'light');
+      return next;
+    });
+  }
+
+  function changeLang(newLang) {
+    setLang(newLang);
+    localStorage.setItem('lang', newLang);
+    if (loaded) {
+      setLoaded(false);
+      setItems([]);
+    }
+  }
+
+  function saveApiKey(key) {
+    setApiKey(key);
+    localStorage.setItem('apiKey', key);
+  }
+
+  const topStories = useMemo(() => {
+    const cutoff = new Date();
+    cutoff.setHours(cutoff.getHours() - 24);
+    return items.filter(i => new Date(i.pubDate) > cutoff).slice(0, 4);
+  }, [items]);
+
+  const availableSources = useMemo(() => {
+    const base = activeTab === 'all' ? items : items.filter(i => i.category === activeTab);
+    return ['all', ...Array.from(new Set(base.map(i => i.source)))];
+  }, [items, activeTab]);
+
+  useEffect(() => { setActiveSource('all'); }, [activeTab]);
+
+  const filtered = useMemo(() => {
+    let list = activeTab === 'all' ? items : items.filter(i => i.category === activeTab);
+    if (activeSource !== 'all') list = list.filter(i => i.source === activeSource);
+    if (dateFilter !== 'all') list = list.filter(i => isWithinDays(i.pubDate, dateFilter));
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      list = list.filter(i => i.title.toLowerCase().includes(q) || i.description?.toLowerCase().includes(q) || i.source.toLowerCase().includes(q));
+    }
+    return list;
+  }, [items, activeTab, activeSource, dateFilter, search]);
+
+  const bg = dark ? '#111' : '#f5f4f0';
+  const headerBg = dark ? '#161616' : '#fff';
+  const borderColor = dark ? '#222' : '#eae9e5';
+  const textPrimary = dark ? '#f0f0f0' : '#111';
+  const textMuted = dark ? '#555' : '#bbb';
+  const inputBg = dark ? '#1e1e1e' : '#fff';
+
+  if (!mounted) return null;
+
+  const isLoading = loading || translating;
+  const loadingText = translating
+    ? `${t.translating} ${LANGUAGES.find(l => l.id === lang)?.native}…`
+    : t.loading;
+
+  return (
+    <div style={{ minHeight: '100vh', background: bg, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", direction: t.dir }}>
+
+      {newCount > 0 && (
+        <div onClick={applyPending} style={{ position: 'fixed', top: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 200, background: '#111', color: '#fff', padding: '10px 20px', borderRadius: 100, fontSize: 13, fontWeight: 600, cursor: 'pointer', boxShadow: '0 4px 24px rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap', animation: 'slideDown 0.3s ease' }}>
+          <span style={{ background: '#10a37f', borderRadius: '50%', width: 8, height: 8, display: 'inline-block' }} />
+          {newCount} {newCount > 1 ? t.newArticles : t.newArticle}
+        </div>
+      )}
+
+      {/* API Key bar */}
+      <div style={{ background: dark ? '#0e0e0e' : '#faf9f7', borderBottom: `1px solid ${borderColor}`, padding: '8px 2.5rem', display: 'flex', alignItems: 'center', gap: 10 }}>
+        <span style={{ fontSize: 11, color: textMuted, whiteSpace: 'nowrap' }}>{t.apiKey}:</span>
+        <input
+          type={showApiKey ? 'text' : 'password'}
+          placeholder={t.apiPlaceholder}
+          value={apiKey}
+          onChange={e => saveApiKey(e.target.value)}
+          style={{ flex: 1, maxWidth: 380, padding: '5px 10px', fontSize: 12, background: inputBg, border: `1px solid ${borderColor}`, borderRadius: 6, color: textPrimary, outline: 'none', fontFamily: 'monospace' }}
+        />
+        <button onClick={() => setShowApiKey(s => !s)} style={{ background: 'none', border: 'none', fontSize: 11, color: textMuted, cursor: 'pointer', padding: 0 }}>
+          {showApiKey ? 'Hide' : 'Show'}
+        </button>
+      </div>
+
+      {/* Header */}
+      <div style={{ background: headerBg, borderBottom: `1px solid ${borderColor}`, padding: '1.25rem 2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100 }}>
+        <div>
+          <p style={{ fontSize: 10, letterSpacing: '0.2em', color: textMuted, textTransform: 'uppercase', marginBottom: 3 }}>{t.subtitle}</p>
+          <h1 style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.03em', color: textPrimary, margin: 0 }}>{t.title}</h1>
+        </div>
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+          {lastChecked && <span style={{ fontSize: 11, color: textMuted }}>{t.updated} {lastChecked}</span>}
+
+          {/* Language selector */}
+          <div style={{ display: 'flex', gap: 4 }}>
+            {LANGUAGES.map(l => (
+              <button key={l.id} onClick={() => changeLang(l.id)} style={{ padding: '6px 12px', fontSize: 12, fontWeight: lang === l.id ? 700 : 400, background: lang === l.id ? (dark ? '#fff' : '#111') : 'transparent', color: lang === l.id ? (dark ? '#111' : '#fff') : textMuted, border: `1px solid ${lang === l.id ? (dark ? '#fff' : '#111') : borderColor}`, borderRadius: 6, cursor: 'pointer' }}>
+                {l.native}
+              </button>
+            ))}
+          </div>
+
+          <button onClick={toggleDark} style={{ background: 'none', border: `1px solid ${borderColor}`, borderRadius: 8, padding: '8px 12px', fontSize: 16, cursor: 'pointer', lineHeight: 1 }}>{dark ? '☀️' : '🌙'}</button>
+          <button onClick={() => setCompact(c => !c)} style={{ background: 'none', border: `1px solid ${borderColor}`, borderRadius: 8, padding: '8px 12px', fontSize: 12, fontWeight: 500, cursor: 'pointer', color: textPrimary }}>{compact ? t.grid : t.list}</button>
+          <button onClick={() => fetchNews(false)} disabled={isLoading} style={{ background: dark ? '#fff' : '#111', color: dark ? '#111' : '#fff', border: 'none', padding: '10px 22px', fontSize: 12, fontWeight: 600, letterSpacing: '0.05em', borderRadius: 8, cursor: isLoading ? 'not-allowed' : 'pointer', opacity: isLoading ? 0.6 : 1 }}>
+            {isLoading ? loadingText : loaded ? t.refresh : t.generate}
+          </button>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      {loaded && (
+        <div style={{ background: headerBg, borderBottom: `1px solid ${borderColor}`, padding: '0 2.5rem', display: 'flex', gap: 4, overflowX: 'auto' }}>
+          {TABS.map(tab => {
+            const count = tab.id === 'all' ? items.length : items.filter(i => i.category === tab.id).length;
+            const active = activeTab === tab.id;
+            return (
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{ padding: '13px 16px', fontSize: 13, fontWeight: active ? 600 : 400, color: active ? textPrimary : textMuted, background: 'none', border: 'none', borderBottom: active ? `2px solid ${textPrimary}` : '2px solid transparent', cursor: 'pointer', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 6, marginBottom: -1 }}>
+                {tab.label[lang]}
+                <span style={{ fontSize: 11, background: active ? (dark ? '#2a2a2a' : '#f0efeb') : 'transparent', color: active ? (dark ? '#aaa' : '#666') : (dark ? '#444' : '#ddd'), padding: '1px 7px', borderRadius: 10 }}>{count}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {error && <div style={{ margin: '1.5rem 2.5rem', padding: '12px 16px', background: '#fff5f5', border: '1px solid #fecaca', borderRadius: 8, color: '#dc2626', fontSize: 13 }}>{error}</div>}
+
+      {!loaded && !isLoading && (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '65vh', gap: 16 }}>
+          <div style={{ fontSize: 44 }}>📡</div>
+          <p style={{ fontSize: 15, color: textMuted, margin: 0, textAlign: 'center' }}>{t.empty}</p>
+          <p style={{ fontSize: 12, color: dark ? '#444' : '#ccc', margin: 0 }}>{t.sources}</p>
+        </div>
+      )}
+
+      {isLoading && (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '65vh', gap: 12 }}>
+          <p style={{ fontSize: 14, color: textMuted }}>{loadingText}</p>
+          {translating && <p style={{ fontSize: 12, color: dark ? '#444' : '#ccc' }}>This may take a few seconds…</p>}
+        </div>
+      )}
+
+      {loaded && (
+        <div style={{ padding: '1.5rem 2.5rem 0', maxWidth: 1280, margin: '0 auto' }}>
+
+          {/* Search + filters */}
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+            <div style={{ position: 'relative', flex: 1, minWidth: 200 }}>
+              <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', fontSize: 14, color: textMuted, pointerEvents: 'none' }}>🔍</span>
+              <input type="text" placeholder={t.search} value={search} onChange={e => setSearch(e.target.value)}
+                style={{ width: '100%', padding: '9px 12px 9px 36px', fontSize: 13, background: inputBg, border: `1px solid ${borderColor}`, borderRadius: 8, color: textPrimary, outline: 'none' }} />
+            </div>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              {DATE_FILTERS.map(f => (
+                <button key={f.id} onClick={() => setDateFilter(f.id)} style={{ padding: '8px 14px', fontSize: 12, fontWeight: dateFilter === f.id ? 600 : 400, color: dateFilter === f.id ? (dark ? '#111' : '#fff') : textMuted, background: dateFilter === f.id ? (dark ? '#fff' : '#111') : 'transparent', border: `1px solid ${dateFilter === f.id ? (dark ? '#fff' : '#111') : borderColor}`, borderRadius: 6, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                  {f.label[lang]}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Source pills */}
+          {availableSources.length > 2 && (
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+              {availableSources.map(src => {
+                const active = activeSource === src;
+                const srcItem = items.find(i => i.source === src);
+                const color = srcItem?.color || '#888';
+                return (
+                  <button key={src} onClick={() => setActiveSource(src)} style={{ padding: '5px 13px', fontSize: 11, fontWeight: active ? 700 : 400, borderRadius: 100, border: active ? `1px solid ${color}` : `1px solid ${borderColor}`, background: active ? color + '18' : 'transparent', color: active ? color : textMuted, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    {src === 'all' ? t.allSources : src}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Top stories */}
+          {activeTab === 'all' && search === '' && dateFilter === 'all' && activeSource === 'all' && topStories.length > 0 && (
+            <div style={{ marginBottom: '2.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: '1rem' }}>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: textMuted, whiteSpace: 'nowrap' }}>{t.topStories}</span>
+                <div style={{ flex: 1, height: 1, background: borderColor }} />
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
+                {topStories.map((item, i) => (
+                  <a key={i} href={item.link} target="_blank" rel="noopener noreferrer"
+                    style={{ display: 'flex', gap: 10, padding: '12px', background: dark ? '#1a1a1a' : '#fff', border: `1px solid ${borderColor}`, borderRadius: 10, textDecoration: 'none', alignItems: 'flex-start' }}>
+                    <span style={{ fontSize: 16, fontWeight: 800, color: dark ? '#333' : '#e5e4e0', lineHeight: 1, flexShrink: 0, paddingTop: 2 }}>0{i + 1}</span>
+                    <div>
+                      <p style={{ fontSize: 13, fontWeight: 600, color: dark ? '#f0f0f0' : '#111', lineHeight: 1.4, margin: '0 0 6px' }}>{item.title}</p>
+                      <Badge source={item.source} color={item.color} />
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Section label */}
+          {filtered.length > 0 && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: '1.5rem' }}>
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: textMuted, whiteSpace: 'nowrap' }}>
+                {search ? `"${search}"` : activeTab === 'all' ? t.allArticles : TABS.find(tab => tab.id === activeTab)?.label[lang]}
+                <span style={{ fontWeight: 400, marginLeft: 6 }}>· {filtered.length}</span>
+              </span>
+              <div style={{ flex: 1, height: 1, background: borderColor }} />
+            </div>
+          )}
+
+          {/* Feed */}
+          {filtered.length > 0 && !compact && (
+            <>
+              <Card item={filtered[0]} featured dark={dark} compact={false} t={t} />
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.25rem', paddingBottom: '3rem' }}>
+                {filtered.slice(1).map((item, i) => <Card key={i} item={item} dark={dark} compact={false} t={t} />)}
+              </div>
+            </>
+          )}
+
+          {filtered.length > 0 && compact && (
+            <div style={{ background: dark ? '#161616' : '#fff', border: `1px solid ${borderColor}`, borderRadius: 12, overflow: 'hidden', marginBottom: '3rem' }}>
+              {filtered.map((item, i) => <Card key={i} item={item} dark={dark} compact={true} t={t} />)}
+            </div>
+          )}
+
+          {filtered.length === 0 && (
+            <div style={{ textAlign: 'center', padding: '4rem', color: textMuted, fontSize: 14 }}>
+              {search ? `"${search}" — ${t.noResults}` : t.noResults}
+            </div>
+          )}
+        </div>
+      )}
+
+      <style>{`
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+          to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        input::placeholder { color: ${dark ? '#444' : '#bbb'}; }
+        input:focus { border-color: ${dark ? '#444' : '#aaa'} !important; }
+      `}</style>
+    </div>
+  );
+}
