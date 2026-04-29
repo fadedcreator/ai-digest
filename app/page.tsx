@@ -7,7 +7,7 @@ const TABS = [
   { id: 'companies', label: { en: 'Companies', zh: '公司', ar: 'الشركات' } },
   { id: 'media', label: { en: 'Media', zh: '媒体', ar: 'الإعلام' } },
   { id: 'youtube', label: { en: 'YouTube', zh: 'YouTube', ar: 'يوتيوب' } },
-  { id: 'newsletters', label: { en: 'Newsletters', zh: '通讯', ar: 'النشرات' } },
+  { id: 'insiders', label: { en: 'Insiders', zh: '内部人士', ar: 'المطلعون' } },
 ];
 
 const DATE_FILTERS = [
