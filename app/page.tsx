@@ -409,7 +409,13 @@ export default function Home() {
           )}
         </div>
       )}
-
+  
+{/* Footer */}
+<div style={{ borderTop: `0.5px solid ${dark ? '#1e1e1e' : '#eae9e5'}`, padding: '1.5rem 2.5rem', display: 'flex', gap: 24, alignItems: 'center', justifyContent: 'center', background: dark ? '#161616' : '#fff' }}>
+        <a href="/about" style={{ fontSize: 12, color: dark ? '#555' : '#bbb', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>About</a>
+        <a href="/privacy" style={{ fontSize: 12, color: dark ? '#555' : '#bbb', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Privacy Policy</a>
+        <span style={{ fontSize: 12, color: dark ? '#333' : '#ddd' }}>© 2026 AIWire</span>
+      </div>
       <style>{`
         @keyframes slideDown {
           from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
