@@ -271,7 +271,7 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <div style={{ minHeight: '100vh', background: bg, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", direction: t.dir }}>
+    <div style={{ minHeight: '100vh', background: bg, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", direction: t.dir, display: 'flex', flexDirection: 'column' }}>
 
       {newCount > 0 && (
         <div onClick={applyPending} style={{ position: 'fixed', top: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 200, background: '#111', color: '#fff', padding: '10px 20px', borderRadius: 100, fontSize: 13, fontWeight: 600, cursor: 'pointer', boxShadow: '0 4px 24px rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}>
@@ -411,8 +411,7 @@ export default function Home() {
       )}
   
 {/* Footer */}
-<div style={{ borderTop: `0.5px solid ${dark ? '#1e1e1e' : '#eae9e5'}`, padding: '1.5rem 2.5rem', display: 'flex', gap: 24, alignItems: 'center', justifyContent: 'center', background: dark ? '#161616' : '#fff' }}>
-        <a href="/about" style={{ fontSize: 12, color: dark ? '#555' : '#bbb', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>About</a>
+<div style={{ borderTop: `0.5px solid ${dark ? '#1e1e1e' : '#eae9e5'}`, padding: '1.5rem 2.5rem', display: 'flex', gap: 24, alignItems: 'center', justifyContent: 'center', background: dark ? '#161616' : '#fff', marginTop: 'auto' }}>        <a href="/about" style={{ fontSize: 12, color: dark ? '#555' : '#bbb', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>About</a>
         <a href="/privacy" style={{ fontSize: 12, color: dark ? '#555' : '#bbb', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Privacy Policy</a>
         <span style={{ fontSize: 12, color: dark ? '#333' : '#ddd' }}>© 2026 AIWire</span>
       </div>
