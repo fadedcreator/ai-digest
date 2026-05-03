@@ -74,9 +74,7 @@ export default function Sources() {
               ))}
             </div>
           ))}
-  
-          <div style={{ borderTop: '0.5px solid #222', paddingTop: '1.5rem', marginTop: '1rem' }}>
-            <p style={{ fontSize: 13, color: '#444', lineHeight: 1.6 }}>
+            
             <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem' }}>
           <h2 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: '0.75rem' }}>Contact & Follow</h2>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: '#aaa', marginBottom: '1.25rem' }}>
@@ -108,10 +106,7 @@ export default function Sources() {
               </div>
             </a>
           </div>
-        </div>
-            </p>
           </div>
-  
         </div>
       </main>
     );
