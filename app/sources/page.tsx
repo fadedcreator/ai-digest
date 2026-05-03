@@ -60,7 +60,7 @@ export default function Sources() {
           {groups.map(group => (
             <div key={group.category} style={{ marginBottom: '2.5rem' }}>
               <div style={{ borderTop: '0.5px solid #222', paddingTop: '1.5rem', marginBottom: '1rem' }}>
-              <h2 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: '0.5rem' }}>{group.category}</h2>
+              <h2 style={{ fontSize: 20, fontWeight: 600, color: '#fff', marginBottom: '0.5rem' }}>{group.category}</h2>
               </div>
               {group.sources.map(source => (
                 <a key={source.name} href={source.url} target="_blank" rel="noopener noreferrer"
