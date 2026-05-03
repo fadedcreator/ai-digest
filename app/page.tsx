@@ -8,6 +8,7 @@ const TABS = [
   { id: 'media', label: { en: 'Media', zh: '媒体', ar: 'الإعلام' } },
   { id: 'youtube', label: { en: 'YouTube', zh: 'YouTube', ar: 'يوتيوب' } },
   { id: 'insiders', label: { en: 'Insiders', zh: '内部人士', ar: 'المطلعون' } },
+  { id: 'bookmarks', label: { en: 'Bookmarks', zh: '书签', ar: 'المحفوظات' } },
 ];
 
 const DATE_FILTERS = [
@@ -138,7 +139,16 @@ function Card({ item, featured, dark, compact, t }) {
             {item.description.length > 120 ? item.description.slice(0, 120) + '...' : item.description}
           </p>
         )}
-        <span style={{ fontSize: 11, color: metaColor, marginTop: 'auto', paddingTop: 4 }}>{item.isVideo ? t.watch : t.read}</span>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 4 }}>
+          <span style={{ fontSize: 11, color: metaColor }}>{item.isVideo ? t.watch : t.read}</span>
+          <button
+            onClick={e => { e.preventDefault(); e.stopPropagation(); toggleBookmark(item); }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, padding: '2px 4px', color: bookmarks.find(b => b.link === item.link) ? '#f59e0b' : metaColor }}
+            title="Bookmark"
+          >
+            {bookmarks.find(b => b.link === item.link) ? '★' : '☆'}
+          </button>
+        </div>
       </div>
     </a>
   );
@@ -159,13 +169,13 @@ export default function Home() {
   const [search, setSearch] = useState('');
   const [compact, setCompact] = useState(false);
   const [lastChecked, setLastChecked] = useState('');
-  const [newCount, setNewCount] = useState(0);
+  const [bookmarks, setBookmarks] = useState([]);
   const intervalRef = useRef(null);
   const hasFetched = useRef(false);
 
   const t = UI[lang];
 
-  useEffect(() => {
+  t(() => {
     const stored = localStorage.getItem('theme');
     if (stored) setDark(stored === 'dark');
     else setDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -181,7 +191,7 @@ export default function Home() {
     }
   }, [mounted]);
 
-  async function fetchNews(silent = false) {
+  async function fetcuseEffechNews(silent = false) {
     if (!silent) setLoading(true);
     setError('');
     try {
@@ -212,10 +222,15 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (!loaded) return;
-    intervalRef.current = setInterval(() => fetchNews(true), REFRESH_INTERVAL);
-    return () => clearInterval(intervalRef.current);
-  }, [loaded, items]);
+    const stored = localStorage.getItem('theme');
+    if (stored) setDark(stored === 'dark');
+    else setDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const storedLang = localStorage.getItem('lang');
+    if (storedLang) setLang(storedLang);
+    const storedBookmarks = localStorage.getItem('bookmarks');
+    if (storedBookmarks) setBookmarks(JSON.parse(storedBookmarks));
+    setMounted(true);
+  }, []);
 
   function applyPending() {
     setItems(pendingItems);
@@ -236,7 +251,14 @@ export default function Home() {
     setLang(newLang);
     localStorage.setItem('lang', newLang);
   }
-
+  function toggleBookmark(item) {
+    setBookmarks(prev => {
+      const exists = prev.find(b => b.link === item.link);
+      const next = exists ? prev.filter(b => b.link !== item.link) : [...prev, item];
+      localStorage.setItem('bookmarks', JSON.stringify(next));
+      return next;
+    });
+  }
   const topStories = useMemo(() => {
     const cutoff = new Date();
     cutoff.setHours(cutoff.getHours() - 24);
@@ -251,6 +273,7 @@ export default function Home() {
   useEffect(() => { setActiveSource('all'); }, [activeTab]);
 
   const filtered = useMemo(() => {
+    if (activeTab === 'bookmarks') return bookmarks;
     let list = activeTab === 'all' ? items : items.filter(i => i.category === activeTab);
     if (activeSource !== 'all') list = list.filter(i => i.source === activeSource);
     if (dateFilter !== 'all') list = list.filter(i => isWithinDays(i.pubDate, dateFilter));
@@ -258,6 +281,8 @@ export default function Home() {
       const q = search.toLowerCase();
       list = list.filter(i => i.title.toLowerCase().includes(q) || i.description?.toLowerCase().includes(q) || i.source.toLowerCase().includes(q));
     }
+    return list;
+  }, [items, activeTab, activeSource, dateFilter, search, bookmarks]);
     return list;
   }, [items, activeTab, activeSource, dateFilter, search]);
 

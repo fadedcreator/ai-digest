@@ -77,7 +77,38 @@ export default function Sources() {
   
           <div style={{ borderTop: '0.5px solid #222', paddingTop: '1.5rem', marginTop: '1rem' }}>
             <p style={{ fontSize: 13, color: '#444', lineHeight: 1.6 }}>
-              Missing a source? Suggest it on X at <a href="https://x.com/fadedcreator" style={{ color: '#666' }}>@fadedcreator</a>.
+            <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem' }}>
+          <h2 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: '0.75rem' }}>Contact & Follow</h2>
+          <p style={{ fontSize: 15, lineHeight: 1.75, color: '#aaa', marginBottom: '1.25rem' }}>
+            Suggestions, feedback, or source requests — reach out or follow for updates:
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <a href="https://x.com/fadedcreator" target="_blank" rel="noopener noreferrer"
+              style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', background: '#1a1a1a', borderRadius: 10, textDecoration: 'none', border: '0.5px solid #2a2a2a' }}>
+              <span style={{ fontSize: 18 }}>𝕏</span>
+              <div>
+                <p style={{ fontSize: 13, fontWeight: 600, color: '#fff', margin: 0 }}>X / Twitter</p>
+                <p style={{ fontSize: 12, color: '#555', margin: 0 }}>@fadedcreator</p>
+              </div>
+            </a>
+            <a href="https://bsky.app/profile/fadedcreator.bsky.social" target="_blank" rel="noopener noreferrer"
+              style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', background: '#1a1a1a', borderRadius: 10, textDecoration: 'none', border: '0.5px solid #2a2a2a' }}>
+              <span style={{ fontSize: 18 }}>🦋</span>
+              <div>
+                <p style={{ fontSize: 13, fontWeight: 600, color: '#fff', margin: 0 }}>Bluesky</p>
+                <p style={{ fontSize: 12, color: '#555', margin: 0 }}>@fadedcreator.bsky.social</p>
+              </div>
+            </a>
+            <a href="https://mastodon.social/@fadedcreator" target="_blank" rel="noopener noreferrer"
+              style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', background: '#1a1a1a', borderRadius: 10, textDecoration: 'none', border: '0.5px solid #2a2a2a' }}>
+              <span style={{ fontSize: 18 }}>🐘</span>
+              <div>
+                <p style={{ fontSize: 13, fontWeight: 600, color: '#fff', margin: 0 }}>Mastodon</p>
+                <p style={{ fontSize: 12, color: '#555', margin: 0 }}>@fadedcreator@mastodon.social</p>
+              </div>
+            </a>
+          </div>
+        </div>
             </p>
           </div>
   
