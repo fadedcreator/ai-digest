@@ -274,7 +274,7 @@ export default function Home() {
     <div style={{ minHeight: '100vh', background: bg, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", direction: t.dir, display: 'flex', flexDirection: 'column' }}>
 
       {newCount > 0 && (
-        <div onClick={applyPending} style={{ position: 'fixed', top: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 200, background: '#111', color: '#fff', padding: '10px 20px', borderRadius: 100, fontSize: 13, fontWeight: 600, cursor: 'pointer', boxShadow: '0 4px 24px rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}>
+        <div onClick={applyPending} style={{ position: 'fixed', top: 16, left: '50%', transform: 'translateX(-50%)', zIndex: 200, background: '#111', color: '#fff', padding: '10px 20px', borderRadius: 100, fontSize: 13, fontWeight: 600, cursor: 'pointer', boxShadow: '0 4px 24px rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}>
           <span style={{ background: '#10a37f', borderRadius: '50%', width: 8, height: 8, display: 'inline-block' }} />
           {newCount} {newCount > 1 ? t.newArticles : t.newArticle}
         </div>
