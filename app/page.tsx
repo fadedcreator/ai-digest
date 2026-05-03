@@ -86,18 +86,19 @@ function Card({ item, featured, dark, compact, t }) {
   if (featured) {
     return (
       <a href={item.link} target="_blank" rel="noopener noreferrer"
-        onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-        textDecoration: 'none', maxHeight: showImage ? 'none' : 220      >
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{ display: 'grid', gridTemplateColumns: showImage ? '1.1fr 1fr' : '1fr', background: bg, borderRadius: 16, overflow: 'hidden', border: `1px solid ${border}`, boxShadow: shadow, transform: hov ? 'translateY(-3px)' : 'none', transition: 'all 0.2s', marginBottom: '2rem', textDecoration: 'none', direction: t.dir, maxHeight: showImage ? 'none' : 220 }}
+>
         {showImage && (
           <div style={{ position: 'relative', minHeight: 260, background: dark ? '#2a2a2a' : '#f0efeb', overflow: 'hidden' }}>
             <img src={item.image} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} onError={e => { e.currentTarget.parentElement.style.display = 'none'; }} />
             {item.isVideo && (
               <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.25)' }}>
-                <div style={{ width: 56, height: 56, background: 'rgba(255,255,255,0.93)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, paddingLeft: 4 }}>▶</div>
+                <div style={{ width: 56, height: 56, background: 'rgba(255,255,255,0.93)', borderadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, paddingLeft: 4 }}>▶</div>
               </div>
             )}
           </div>
-        )}
+        )}              
         <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Badge source={item.source} color={item.color} />
