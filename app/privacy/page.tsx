@@ -48,7 +48,6 @@ export default function Privacy() {
           </div>
   
           <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem' }}>
-            <h2 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: '1rem' }}>Contact</h2>
             <p style={{ fontSize: 15, lineHeight: 1.75, color: '#aaa' }}>
             <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem' }}>
           <h2 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: '0.75rem' }}>Contact & Follow</h2>
