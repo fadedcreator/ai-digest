@@ -330,7 +330,7 @@ export default function Home() {
       {loaded && (
         <div style={{ background: headerBg, borderBottom: `1px solid ${borderColor}`, padding: '0 2.5rem', display: 'flex', gap: 4, overflowX: 'auto' }}>
           {TABS.map(tab => {
-            const count = tab.id === 'all' ? items.length : items.filter(i => i.category === tab.id).length;
+            const count = tab.id === 'all' ? items.length : tab.id === 'bookmarks' ? bookmarks.length : items.filter(i => i.category === tab.id).length;
             const active = activeTab === tab.id;
             return (
               <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{ padding: '13px 16px', fontSize: 13, fontWeight: active ? 600 : 400, color: active ? textPrimary : textMuted, background: 'none', border: 'none', borderBottom: active ? `2px solid ${textPrimary}` : '2px solid transparent', cursor: 'pointer', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 6, marginBottom: -1 }}>
