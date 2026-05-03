@@ -107,7 +107,16 @@ function Card({ item, featured, dark, compact, t, bookmarks, toggleBookmark }) {
           </div>
           <h2 style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.35, letterSpacing: '-0.02em', color: titleColor, margin: 0 }}>{item.title}</h2>
           {item.description && <p style={{ fontSize: 13, color: descColor, lineHeight: 1.65, margin: 0 }}>{item.description}</p>}
-          <span style={{ fontSize: 12, color: metaColor, marginTop: 'auto', paddingTop: 8 }}>{item.isVideo ? t.watchFull : t.readFull}</span>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 8 }}>
+            <span style={{ fontSize: 12, color: metaColor }}>{item.isVideo ? t.watchFull : t.readFull}</span>
+            <button
+              onClick={e => { e.preventDefault(); e.stopPropagation(); toggleBookmark(item); }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16, padding: '2px 4px', color: bookmarks.find(b => b.link === item.link) ? '#f59e0b' : metaColor, opacity: 1 }}
+              title="Bookmark"
+            >
+              {bookmarks.find(b => b.link === item.link) ? '★' : '☆'}
+            </button>
+          </div>
         </div>
       </a>
     );
