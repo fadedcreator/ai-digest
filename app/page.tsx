@@ -275,7 +275,13 @@ export default function Home() {
   useEffect(() => { setActiveSource('all'); }, [activeTab]);
 
   const filtered = useMemo(() => {
-    if (activeTab === 'bookmarks') return bookmarks;
+    if (activeTab === 'bookmarks') {
+      if (search.trim()) {
+        const q = search.toLowerCase();
+        return bookmarks.filter(i => i.title.toLowerCase().includes(q) || i.description?.toLowerCase().includes(q) || i.source.toLowerCase().includes(q));
+      }
+      return bookmarks;
+    }
     let list = activeTab === 'all' ? items : items.filter(i => i.category === activeTab);
     if (activeSource !== 'all') list = list.filter(i => i.source === activeSource);
     if (dateFilter !== 'all') list = list.filter(i => isWithinDays(i.pubDate, dateFilter));
@@ -283,9 +289,10 @@ export default function Home() {
       const q = search.toLowerCase();
       list = list.filter(i => i.title.toLowerCase().includes(q) || i.description?.toLowerCase().includes(q) || i.source.toLowerCase().includes(q));
     }
+  
     return list;
   }, [items, activeTab, activeSource, dateFilter, search, bookmarks]);
-
+ 
   const bg = dark ? '#111' : '#f5f4f0';
   const headerBg = dark ? '#161616' : '#fff';
   const borderColor = dark ? '#222' : '#eae9e5';
