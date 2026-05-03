@@ -411,7 +411,9 @@ export default function Home() {
       )}
   
 {/* Footer */}
-<div style={{ borderTop: `0.5px solid ${dark ? '#1e1e1e' : '#eae9e5'}`, padding: '1.5rem 2.5rem', display: 'flex', gap: 24, alignItems: 'center', justifyContent: 'center', background: dark ? '#161616' : '#fff', marginTop: 'auto' }}>        <a href="/about" style={{ fontSize: 12, color: dark ? '#555' : '#bbb', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>About</a>
+<div style={{ borderTop: `0.5px solid ${dark ? '#1e1e1e' : '#eae9e5'}`, padding: '1.5rem 2.5rem', display: 'flex', gap: 24, alignItems: 'center', justifyContent: 'center', background: dark ? '#161616' : '#fff', marginTop: 'auto' }}>     
+     <a href="/about" style={{ fontSize: 12, color: dark ? '#555' : '#bbb', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>About</a> 
+     <a href="/sources" style={{ fontSize: 12, color: dark ? '#555' : '#bbb', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Sources</a>
         <a href="/privacy" style={{ fontSize: 12, color: dark ? '#555' : '#bbb', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Privacy Policy</a>
         <span style={{ fontSize: 12, color: dark ? '#333' : '#ddd' }}>© 2026 AIWire</span>
       </div>
