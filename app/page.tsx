@@ -284,7 +284,7 @@ export default function Home() {
         <div>
           <p style={{ fontSize: 10, letterSpacing: '0.2em', color: textMuted, textTransform: 'uppercase', marginBottom: 3 }}>{t.subtitle}</p>
           <h1 style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.03em', color: textPrimary, margin: 0 }}>{t.title}</h1>
-          <p style={{ fontSize: 11, color: dark ? '#888' : '#999', margin: '3px 0 0', letterSpacing: '0.04em' }}>Free · No account needed</p>        </div>
+<p style={{ fontSize: 11, color: dark ? '#888' : '#999', margin: '3px 0 0', letterSpacing: '0.04em' }}>Free · No account needed</p>        </div>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
           {lastChecked && <span style={{ fontSize: 11, color: textMuted }}>{t.updated} {lastChecked}</span>}
           <div style={{ display: 'flex', gap: 4 }}>
@@ -327,7 +327,26 @@ export default function Home() {
 
       {loaded && (
         <div style={{ padding: '1.5rem 2.5rem 0', maxWidth: 1280, margin: '0 auto' }}>
-
+{activeTab === 'all' && search === '' && dateFilter === 'all' && activeSource === 'all' && topStories.length > 0 && (
+            <div style={{ marginBottom: '2.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: '1rem' }}>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: textMuted, whiteSpace: 'nowrap' }}>{t.topStories}</span>
+                <div style={{ flex: 1, height: 1, background: borderColor }} />
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
+                {topStories.map((item, i) => (
+                  <a key={i} href={item.link} target="_blank" rel="noopener noreferrer"
+                    style={{ display: 'flex', gap: 10, padding: '12px', background: dark ? '#1a1a1a' : '#fff', border: `1px solid ${borderColor}`, borderRadius: 10, textDecoration: 'none', alignItems: 'flex-start' }}>
+                    <span style={{ fontSize: 16, fontWeight: 800, color: dark ? '#333' : '#e5e4e0', lineHeight: 1, flexShrink: 0, paddingTop: 2 }}>0{i + 1}</span>
+                    <div>
+                      <p style={{ fontSize: 13, fontWeight: 600, color: dark ? '#f0f0f0' : '#111', lineHeight: 1.4, margin: '0 0 6px' }}>{item.title}</p>
+                      <Badge source={item.source} color={item.color} />
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
           <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
             <div style={{ position: 'relative', flex: 1, minWidth: 200 }}>
               <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', fontSize: 14, color: textMuted, pointerEvents: 'none' }}>🔍</span>
@@ -358,26 +377,7 @@ export default function Home() {
             </div>
           )}
 
-          {activeTab === 'all' && search === '' && dateFilter === 'all' && activeSource === 'all' && topStories.length > 0 && (
-            <div style={{ marginBottom: '2.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: '1rem' }}>
-                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: textMuted, whiteSpace: 'nowrap' }}>{t.topStories}</span>
-                <div style={{ flex: 1, height: 1, background: borderColor }} />
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
-                {topStories.map((item, i) => (
-                  <a key={i} href={item.link} target="_blank" rel="noopener noreferrer"
-                    style={{ display: 'flex', gap: 10, padding: '12px', background: dark ? '#1a1a1a' : '#fff', border: `1px solid ${borderColor}`, borderRadius: 10, textDecoration: 'none', alignItems: 'flex-start' }}>
-                    <span style={{ fontSize: 16, fontWeight: 800, color: dark ? '#333' : '#e5e4e0', lineHeight: 1, flexShrink: 0, paddingTop: 2 }}>0{i + 1}</span>
-                    <div>
-                      <p style={{ fontSize: 13, fontWeight: 600, color: dark ? '#f0f0f0' : '#111', lineHeight: 1.4, margin: '0 0 6px' }}>{item.title}</p>
-                      <Badge source={item.source} color={item.color} />
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
+         
 
           {filtered.length > 0 && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: '1.5rem' }}>
