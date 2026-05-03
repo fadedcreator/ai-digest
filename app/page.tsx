@@ -385,6 +385,7 @@ export default function Home() {
               <input type="text" placeholder={t.search} value={search} onChange={e => setSearch(e.target.value)}
                 style={{ width: '100%', padding: '9px 12px 9px 36px', fontSize: 13, background: inputBg, border: `1px solid ${borderColor}`, borderRadius: 8, color: textPrimary, outline: 'none' }} />
             </div>
+            {activeTab !== 'bookmarks' && (
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
               {DATE_FILTERS.map(f => (
                 <button key={f.id} onClick={() => setDateFilter(f.id)} style={{ padding: '8px 14px', fontSize: 12, fontWeight: dateFilter === f.id ? 600 : 400, color: dateFilter === f.id ? (dark ? '#111' : '#fff') : textMuted, background: dateFilter === f.id ? (dark ? '#fff' : '#111') : 'transparent', border: `1px solid ${dateFilter === f.id ? (dark ? '#fff' : '#111') : borderColor}`, borderRadius: 6, cursor: 'pointer', whiteSpace: 'nowrap' }}>
@@ -392,6 +393,7 @@ export default function Home() {
                 </button>
               ))}
             </div>
+            )}
           </div>
 
           {availableSources.length > 2 && (
