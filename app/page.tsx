@@ -52,7 +52,7 @@ function Badge({ source, color }) {
   );
 }
 
-function Card({ item, featured, dark, compact, t }) {
+function Card({ item, featured, dark, compact, t, bookmarks, toggleBookmark }) {
   const [hov, setHov] = useState(false);
   const bg = dark ? '#1e1e1e' : '#fff';
   const border = dark ? (hov ? '#383838' : '#2a2a2a') : (hov ? '#d0cfc9' : '#eae9e5');
@@ -416,16 +416,16 @@ export default function Home() {
 
           {filtered.length > 0 && !compact && (
             <>
-              <Card item={filtered[0]} featured dark={dark} compact={false} t={t} />
+              <Card item={filtered[0]} featured dark={dark} compact={false} t={t} bookmarks={bookmarks} toggleBookmark={toggleBookmark} />
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.25rem', paddingBottom: '3rem' }}>
-                {filtered.slice(1).map((item, i) => <Card key={i} item={item} dark={dark} compact={false} t={t} />)}
+                {filtered.slice(1).map((item, i) => <Card key={i} item={item} dark={dark} compact={false} t={t} bookmarks={bookmarks} toggleBookmark={toggleBookmark} />)}
               </div>
             </>
           )}
 
           {filtered.length > 0 && compact && (
             <div style={{ background: dark ? '#161616' : '#fff', border: `1px solid ${borderColor}`, borderRadius: 12, overflow: 'hidden', marginBottom: '3rem' }}>
-              {filtered.map((item, i) => <Card key={i} item={item} dark={dark} compact={true} t={t} />)}
+              {filtered.map((item, i) => <Card key={i} item={item} dark={dark} compact={true} t={t} bookmarks={bookmarks} toggleBookmark={toggleBookmark} />)}
             </div>
           )}
 
