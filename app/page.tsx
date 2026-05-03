@@ -161,6 +161,7 @@ export default function Home() {
   const [compact, setCompact] = useState(false);
   const [lastChecked, setLastChecked] = useState('');
   const [bookmarks, setBookmarks] = useState([]);
+  const [newCount, setNewCount] = useState(0);
   const intervalRef = useRef(null);
   const hasFetched = useRef(false);
 
