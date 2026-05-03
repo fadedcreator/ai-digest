@@ -87,8 +87,7 @@ function Card({ item, featured, dark, compact, t }) {
     return (
       <a href={item.link} target="_blank" rel="noopener noreferrer"
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-        style={{ display: 'grid', gridTemplateColumns: showImage ? '1.1fr 1fr' : '1fr', background: bg, borderRadius: 16, overflow: 'hidden', border: `1px solid ${border}`, boxShadow: shadow, transform: hov ? 'translateY(-3px)' : 'none', transition: 'all 0.2s', marginBottom: '2rem', textDecoration: 'none' maxHeight: showImage ? 'none' : 220}}
-      >
+        textDecoration: 'none', maxHeight: showImage ? 'none' : 220      >
         {showImage && (
           <div style={{ position: 'relative', minHeight: 260, background: dark ? '#2a2a2a' : '#f0efeb', overflow: 'hidden' }}>
             <img src={item.image} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} onError={e => { e.currentTarget.parentElement.style.display = 'none'; }} />
