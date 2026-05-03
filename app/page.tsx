@@ -139,7 +139,16 @@ function Card({ item, featured, dark, compact, t }) {
             {item.description.length > 120 ? item.description.slice(0, 120) + '...' : item.description}
           </p>
         )}
-        <span style={{ fontSize: 11, color: metaColor, marginTop: 'auto', paddingTop: 4 }}>{item.isVideo ? t.watch : t.read}</span>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 4 }}>
+          <span style={{ fontSize: 11, color: metaColor }}>{item.isVideo ? t.watch : t.read}</span>
+          <button
+            onClick={e => { e.preventDefault(); e.stopPropagation(); toggleBookmark(item); }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, padding: '2px 4px', color: bookmarks.find(b => b.link === item.link) ? '#f59e0b' : metaColor, opacity: 1 }}
+            title="Bookmark"
+          >
+            {bookmarks.find(b => b.link === item.link) ? '★' : '☆'}
+          </button>
+        </div>
       </div>
     </a>
   );
