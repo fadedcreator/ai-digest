@@ -284,6 +284,7 @@ export default function Home() {
         <div>
           <p style={{ fontSize: 10, letterSpacing: '0.2em', color: textMuted, textTransform: 'uppercase', marginBottom: 3 }}>{t.subtitle}</p>
           <h1 style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.03em', color: textPrimary, margin: 0 }}>{t.title}</h1>
+          <p style={{ fontSize: 11, color: '#10a37f', margin: '3px 0 0', letterSpacing: '0.04em' }}>Free · No account needed</p>
         </div>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
           {lastChecked && <span style={{ fontSize: 11, color: textMuted }}>{t.updated} {lastChecked}</span>}
