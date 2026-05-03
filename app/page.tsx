@@ -380,7 +380,7 @@ export default function Home() {
             </div>
           )}
           <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
-            <div style={{ position: 'relative', flex: 1, minWidth: 200 }}>
+            <div style={{ position: 'relative', width: '100%', maxWidth: 680 }}>
               <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', fontSize: 14, color: textMuted, pointerEvents: 'none' }}>🔍</span>
               <input type="text" placeholder={t.search} value={search} onChange={e => setSearch(e.target.value)}
                 style={{ width: '100%', padding: '9px 12px 9px 36px', fontSize: 13, background: inputBg, border: `1px solid ${borderColor}`, borderRadius: 8, color: textPrimary, outline: 'none' }} />
@@ -390,11 +390,12 @@ export default function Home() {
               {DATE_FILTERS.map(f => (
                 <button key={f.id} onClick={() => setDateFilter(f.id)} style={{ padding: '8px 14px', fontSize: 12, fontWeight: dateFilter === f.id ? 600 : 400, color: dateFilter === f.id ? (dark ? '#111' : '#fff') : textMuted, background: dateFilter === f.id ? (dark ? '#fff' : '#111') : 'transparent', border: `1px solid ${dateFilter === f.id ? (dark ? '#fff' : '#111') : borderColor}`, borderRadius: 6, cursor: 'pointer', whiteSpace: 'nowrap' }}>
                   {f.label[lang]}
-                </button>
+                  </button>
               ))}
             </div>
             )}
           </div>
+           
 
           {availableSources.length > 2 && (
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: '1.5rem' }}>
