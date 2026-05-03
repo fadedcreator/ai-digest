@@ -42,14 +42,12 @@ export default function Privacy() {
   
           <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem', marginBottom: '2rem' }}>
             <h2 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: '1rem' }}>Advertising</h2>
-            <p style={{ fontSize: 15, lineHeight: 1.75, color: '#aaa' }}>
-              AIWire does not currently display advertising. If advertising is introduced in the future, this policy will be updated accordingly.
-            </p>
+
           </div>
-  
-          <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem' }}>
-            <p style={{ fontSize: 15, lineHeight: 1.75, color: '#aaa' }}>
-            <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem' }}>
+              <p style={{ fontSize: 15, lineHeight: 1.75, color: '#aaa' }}>
+            <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem' }}>  
+              AIWire does not currently display advertising. If advertising is introduced in the future, this policy will be updated accordingly.
+    
           <h2 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: '0.75rem' }}>Contact & Follow</h2>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: '#aaa', marginBottom: '1.25rem' }}>
           Suggestions, feedback, or source requests, reach out or follow for updates:
@@ -84,7 +82,7 @@ export default function Privacy() {
             </p>
           </div>
   
-        </div>
+        
       </main>
     );
   }
