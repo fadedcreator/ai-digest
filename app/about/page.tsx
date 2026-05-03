@@ -33,8 +33,7 @@ export default function About() {
           </p>
         </div>
 
-        <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem' }}>
-          <p style={{ fontSize: 16, lineHeight: 1.75, color: '#aaa' }}>
+       
           <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem' }}>
           <h2 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: '0.75rem' }}>Contact & Follow</h2>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: '#aaa', marginBottom: '1.25rem' }}>
