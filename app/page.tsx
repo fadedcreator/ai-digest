@@ -166,12 +166,14 @@ export default function Home() {
 
   const t = UI[lang];
 
-  t(() => {
+  useEffect(() => {
     const stored = localStorage.getItem('theme');
     if (stored) setDark(stored === 'dark');
     else setDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
     const storedLang = localStorage.getItem('lang');
     if (storedLang) setLang(storedLang);
+    const storedBookmarks = localStorage.getItem('bookmarks');
+    if (storedBookmarks) setBookmarks(JSON.parse(storedBookmarks));
     setMounted(true);
   }, []);
 
@@ -181,8 +183,7 @@ export default function Home() {
       fetchNews(false);
     }
   }, [mounted]);
-
-  async function fetcuseEffechNews(silent = false) {
+  async function fetchNews(silent = false) {
     if (!silent) setLoading(true);
     setError('');
     try {
