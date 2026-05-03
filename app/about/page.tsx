@@ -66,8 +66,7 @@ export default function About() {
             </a>
           </div>
         </div>
-          </p>
-        </div>
+
 
       </div>
     </main>
