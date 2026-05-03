@@ -53,7 +53,7 @@ export default function Privacy() {
             <div style={{ borderTop: '0.5px solid #222', paddingTop: '2rem' }}>
           <h2 style={{ fontSize: 18, fontWeight: 600, color: '#fff', marginBottom: '0.75rem' }}>Contact & Follow</h2>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: '#aaa', marginBottom: '1.25rem' }}>
-            Suggestions, feedback, or source requests — reach out or follow for updates:
+          Suggestions, feedback, or source requests, reach out or follow for updates:
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <a href="https://x.com/fadedcreator" target="_blank" rel="noopener noreferrer"

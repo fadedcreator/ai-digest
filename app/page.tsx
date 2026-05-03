@@ -435,7 +435,7 @@ export default function Home() {
       </div>
       <style>{`
         @keyframes slideDown {
-          from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+          from { opacity: 1; transform: translateX(-50%) translateY(-12px); }
           to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         input::placeholder { color: ${dark ? '#444' : '#bbb'}; }
