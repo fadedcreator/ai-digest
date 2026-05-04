@@ -374,15 +374,17 @@ export default function Home() {
                 <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: textMuted, whiteSpace: 'nowrap' }}>{t.topStories}</span>
                 <div style={{ flex: 1, height: 1, background: borderColor }} />
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
-                {topStories.map((item, i) => (
-                  <a key={i} href={item.link} target="_blank" rel="noopener noreferrer"
-                    style={{ display: 'flex', gap: 10, padding: '12px', background: dark ? '#1a1a1a' : '#fff', border: `1px solid ${borderColor}`, borderRadius: 10, textDecoration: 'none', alignItems: 'flex-start' }}>
-                    <span style={{ fontSize: 16, fontWeight: 800, color: dark ? '#333' : '#e5e4e0', lineHeight: 1, flexShrink: 0, paddingTop: 2 }}>0{i + 1}</span>
-                    <div>
+              <div style={{ flex: 1, minWidth: 0 }}>
                       <p style={{ fontSize: 13, fontWeight: 600, color: dark ? '#f0f0f0' : '#111', lineHeight: 1.4, margin: '0 0 6px' }}>{item.title}</p>
                       <Badge source={item.source} color={item.color} />
                     </div>
+                    <button
+                      onClick={e => { e.preventDefault(); e.stopPropagation(); toggleBookmark(item); }}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, padding: '2px 4px', color: bookmarks.find(b => b.link === item.link) ? '#f59e0b' : (dark ? '#555' : '#bbb'), flexShrink: 0 }}
+                      title="Bookmark"
+                    >
+                      {bookmarks.find(b => b.link === item.link) ? '★' : '☆'}
+                    </button>
                   </a>
                 ))}
               </div>
